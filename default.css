@@ -1,0 +1,7 @@
+#messages {
+  list-style-type: none;
+}
+
+#messages li:nth-child(odd) {
+  background: #eee;
+}

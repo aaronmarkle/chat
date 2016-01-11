@@ -1,7 +1,20 @@
-#messages {
+#messages, #dev-messages, #sports-messages, #games-messages {
   list-style-type: none;
 }
 
-#messages li:nth-child(odd) {
+#messages li:nth-child(odd),
+#dev-messages li:nth-child(odd),
+#sports-messages li:nth-child(odd),
+#games-messages li:nth-child(odd) {
   background: #eee;
+}
+
+#rooms {
+  list-style-type: none;
+  padding: 0;
+}
+
+#rooms li {
+  display: inline;
+  margin: 0 10px;
 }

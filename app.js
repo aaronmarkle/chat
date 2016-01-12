@@ -6,17 +6,18 @@ var io = require('socket.io')(http);
 app.use(express.static(__dirname));
 
 io.on('connection', function(socket){
-  socket.on('main-message', function(msg){
-    io.emit('main-message', msg);
+  socket.on('join room', function(room) {
+    console.log('joining room', room);
+    socket.join(room);
   });
-  socket.on('dev-message', function(msg){
-    io.emit('dev-message', msg);
+  
+  socket.on('leave room', function(room) {
+    console.log('leaving room', room);
+    socket.leave(room);
   });
-  socket.on('sports-message', function(msg){
-    io.emit('sports-message', msg);
-  });
-  socket.on('games-message', function(msg){
-    io.emit('games-message', msg);
+
+  socket.on('send', function(data) {
+    io.sockets.in(data.room).emit('message', data.message);
   });
 });
 

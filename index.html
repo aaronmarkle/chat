@@ -8,37 +8,16 @@
 <body>
   <h1>Chat</h1>
   <ul id="rooms">
-    <li><a id="main-link">Main Chatroom</a></li>
-    <li><a id="dev-link">Web Development</a></li>
-    <li><a id="sports-link">Sports</a></li>
-    <li><a id="games-link">Games</a></li>
+    <li><button id="main-link">Main Chatroom</button></li>
+    <li><button id="dev-link">Web Development</button></li>
+    <li><button id="sports-link">Sports</button></li>
+    <li><button id="games-link">Games</button></li>
   </ul>
   <div id="main">
     <p class="h2">Main Chatroom</p>
-    <ul id="main-messages"></ul>
-    <form id="main-form" action="">
-      <input type="text" id="main-m" autocomplete="off"><button id="main-send">Send</button>
-    </form>
-  </div>
-  <div id="dev" class="hidden">
-    <p class="h2">Web Development</p>
-    <ul id="dev-messages"></ul>
-    <form id="dev-form" action="">
-      <input type="text" id="dev-m" autocomplete="off"><button id="dev-send">Send</button>
-    </form>
-  </div>
-  <div id="sports" class="hidden">
-    <p class="h2">Sports Room</p>
-    <ul id="sports-messages"></ul>
-    <form id="sports-form" action="">
-      <input type="text" id="sports-m" autocomplete="off"><button id="sports-send">Send</button>
-    </form>
-  </div>
-  <div id="games" class="hidden">
-    <p class="h2">Games Room</p>
-    <ul id="games-messages"></ul>
-    <form id="games-form" action="">
-      <input type="text" id="games-m" autocomplete="off"><button id="games-send">Send</button>
+    <ul id="messages"></ul>
+    <form id="form" action="">
+      <input type="text" id="m" autocomplete="off"><button id="send">Send</button>
     </form>
   </div>
   <script src="/socket.io/socket.io.js"></script>

@@ -1,11 +1,8 @@
-#main-messages, #dev-messages, #sports-messages, #games-messages {
+#messages {
   list-style-type: none;
 }
 
-#main-messages li:nth-child(odd),
-#dev-messages li:nth-child(odd),
-#sports-messages li:nth-child(odd),
-#games-messages li:nth-child(odd) {
+#messages li:nth-child(odd) {
   background: #eee;
 }
 

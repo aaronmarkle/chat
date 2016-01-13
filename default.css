@@ -2,10 +2,6 @@
   list-style-type: none;
 }
 
-#messages li:nth-child(odd) {
-  background: #eee;
-}
-
 #rooms {
   list-style-type: none;
   padding: 0;

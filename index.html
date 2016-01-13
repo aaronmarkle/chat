@@ -6,10 +6,11 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <body>
+  <p class="h1">chat</p>
   <form id="user-form" action="">
-  <h1>Choose your username: 
+  <p class="h2">Choose your username: 
     <input type="text" id="user"><button id="user-submit">Ok</button>
-  </h1>
+  </p>
   </form>
   <ul id="rooms">
     <li><button id="main-link" class="btn btn-primary">Main Chatroom</button></li>
@@ -19,10 +20,16 @@
   </ul>
   <div id="main">
     <p id="title" class="h2">main chat</p>
-    <ul id="messages"></ul>
-    <form id="form" action="">
-      <input type="text" id="m" autocomplete="off"><button id="send">Send</button>
-    </form>
+    <div class="container">
+      <div class="row">
+        <div id="chatroom" class="col-md-12">
+          <ul id="messages"></ul>
+          <form id="form" action="">
+            <input type="text" id="m"><button id="send">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="default.js"></script>

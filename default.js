@@ -19,7 +19,10 @@ chatroomLinks('games-link', 'games');
 document.getElementById('user-submit').addEventListener('click', function(e){
   e.preventDefault();
   socket.emit('adduser', document.getElementById('user').value);
-  document.getElementById('user-form').reset();
+  document.getElementById('user-form').classList.add('hidden');
+  var form = document.getElementById('form');
+  var usernameNode = document.createTextNode(document.getElementById('user').value);
+  form.insertBefore(usernameNode, form.firstChild)
 });
 
 document.getElementById('send').addEventListener('click', function(e){

@@ -6,15 +6,15 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <body>
-  <h1>Chat</h1>
+  <h1>Choose your username: <input type="text" id="user"><button id="user-select">Ok</button></h1>
   <ul id="rooms">
-    <li><button id="main-link">Main Chatroom</button></li>
-    <li><button id="dev-link">Web Development</button></li>
-    <li><button id="sports-link">Sports</button></li>
-    <li><button id="games-link">Games</button></li>
+    <li><button id="main-link" class="btn btn-primary">Main Chatroom</button></li>
+    <li><button id="dev-link" class="btn btn-primary">Web Development</button></li>
+    <li><button id="sports-link" class="btn btn-primary">Sports</button></li>
+    <li><button id="games-link" class="btn btn-primary">Games</button></li>
   </ul>
   <div id="main">
-    <p class="h2">Main Chatroom</p>
+    <p id="title" class="h2">main chat</p>
     <ul id="messages"></ul>
     <form id="form" action="">
       <input type="text" id="m" autocomplete="off"><button id="send">Send</button>

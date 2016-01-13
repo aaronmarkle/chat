@@ -8,6 +8,7 @@ function chatroomLinks(btnId, roomName) {
     socket.emit('leave room', currentRoom);
     socket.emit('join room', roomName);
     currentRoom = roomName;
+    document.getElementById('title').textContent = roomName + ' chat';
   });
 }
 chatroomLinks('main-link', 'main');

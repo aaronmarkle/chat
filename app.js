@@ -6,6 +6,10 @@ var io = require('socket.io')(http);
 app.use(express.static(__dirname));
 
 io.on('connection', function(socket){
+  socket.on('adduser', function(username){
+    socket.username = username;
+  });
+
   socket.on('join room', function(room) {
     console.log('joining room', room);
     socket.join(room);
@@ -17,7 +21,7 @@ io.on('connection', function(socket){
   });
 
   socket.on('send', function(data) {
-    io.sockets.in(data.room).emit('message', data.message);
+    io.sockets.in(data.room).emit('message', socket.username, data.message);
   });
 });
 

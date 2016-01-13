@@ -16,6 +16,12 @@ chatroomLinks('dev-link', 'dev');
 chatroomLinks('sports-link', 'sports');
 chatroomLinks('games-link', 'games');
 
+document.getElementById('user-submit').addEventListener('click', function(e){
+  e.preventDefault();
+  socket.emit('adduser', document.getElementById('user').value);
+  document.getElementById('user-form').reset();
+});
+
 document.getElementById('send').addEventListener('click', function(e){
   e.preventDefault();
   message = document.getElementById('m').value;
@@ -23,8 +29,8 @@ document.getElementById('send').addEventListener('click', function(e){
   document.getElementById('form').reset();
 });
 
-socket.on('message', function(msg){
-  var node = document.createTextNode(msg);
+socket.on('message', function(username, msg){
+  var node = document.createTextNode(username + ': ' + msg);
   var li = document.createElement('li');
   li.appendChild(node);
   document.getElementById('messages').appendChild(li);

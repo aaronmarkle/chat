@@ -16,19 +16,6 @@ chatroomLinks('dev-link', 'dev');
 chatroomLinks('sports-link', 'sports');
 chatroomLinks('games-link', 'games');
 
-document.getElementById('login').addEventListener('click', function(e){
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', '/login');
-  xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-  xhr.send(JSON.stringify({username: document.getElementById('user').value, password: document.getElementById('password').value}));
-  e.preventDefault();
-  socket.emit('adduser', document.getElementById('user').value);
-  document.getElementById('user-form').classList.add('hidden');
-  var form = document.getElementById('form');
-  var usernameNode = document.createTextNode(document.getElementById('user').value);
-  form.insertBefore(usernameNode, form.firstChild)
-});
-
 document.getElementById('send').addEventListener('click', function(e){
   e.preventDefault();
   message = document.getElementById('m').value;

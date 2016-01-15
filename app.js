@@ -14,6 +14,14 @@ var userSchema = new Schema({
   password: String
 });
 
+function createUser() {
+  var newUser = new User({
+    username: username,
+    password: password
+  });
+  newUser.save();
+}
+
 var User = mongoose.model('User', userSchema);
 
 // Passport login configuration
@@ -31,6 +39,27 @@ passport.use(new LocalStrategy(function(username, password, done) {
       return done(null, user);
     } else {
       return done(null, false, { message: 'Incorrect password.' });
+    }
+  });
+}));
+
+passport.use('local-signup', new LocalStrategy({passReqToCallback: true}, function(req, username, password, done) {
+  User.findOne({'username': username}, function(err, user) {
+    if (err) {
+      return done(err);
+    }
+    if (user) {
+      return done(null, false, { message: 'Username is already taken.'});
+    } else {
+      var newUser = new User();
+      newUser.username = username;
+      newUser.password = password;
+      newUser.save(function(err) {
+        if (err) {
+          throw err;
+        }
+        return done(null, newUser);
+      });
     }
   });
 }));
@@ -77,7 +106,6 @@ io.on('connection', function(socket){
 });
 
 // Routes
-//app.use(express.static(__dirname));
 app.get('/default.css', function(req, res) {
   res.sendFile(__dirname + '/default.css');
 });
@@ -94,6 +122,10 @@ app.get('/', function(req, res) {
   }
 });
 
+app.get('/signup', function(req, res) {
+  res.sendFile(__dirname + '/signup.html');
+});
+
 app.get('/chat', function(req, res) {
   if (req.user) {
     res.sendFile(__dirname + '/chat.html');
@@ -104,6 +136,8 @@ app.get('/chat', function(req, res) {
 });
 
 app.post('/', urlParser, passport.authenticate('local', {successRedirect: '/chat', failureRedirect: '/'}));
+
+app.post('/signup', urlParser, passport.authenticate('local-signup', {successRedirect: '/chat', failureRedirect: '/signup'}));
 
 http.listen(8080, function(){
   console.log('server live on port 8080');

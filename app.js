@@ -5,48 +5,48 @@ var io = require('socket.io')(http);
 var bodyParser = require('body-parser');
 var urlParser = bodyParser.urlencoded({ extended: false });
 
-// Mongodb configuration
-var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://localhost:27017/users';
+// Mongoose configuration
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/users');
+var Schema = mongoose.Schema;
+var userSchema = new Schema({
+  username: String,
+  password: String
+});
+
+var User = mongoose.model('User', userSchema);
 
 // Passport login configuration
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    MongoClient.connect(url, function(err, db) {
-      var users = db.collection('users');
-      users.findOne({username: username}, function(err, user){
-        if (err) {
-          return done(err);
-        }
-        if (!user) {
-          return done(null, false, { message: 'Incorrect username.' });
-        }
-        if (password === user.password) {
-          return done(null, user);
-        } else {
-          return done(null, false, { message: 'Incorrect password.' });
-        }
-      });
-    });
+passport.use(new LocalStrategy(function(username, password, done) {
+  User.findOne({username: username}, function(err, user){
+    if (err) {
+      return done(err);
+    }
+    if (!user) {
+      return done(null, false, { message: 'Incorrect username.' });
+    }
+    if (password === user.password) {
+      return done(null, user);
+    } else {
+      return done(null, false, { message: 'Incorrect password.' });
+    }
+  });
 }));
 
 passport.serializeUser(function(user, done) {
-  done(null, user.username);
+  done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-  MongoClient.connect(url, function(err, db) {
-    var users = db.collection('users');
-    users.findOne({username: id}, function(err, user) {
-      done(err, user);
-    });
+  User.findById(id, function(err, user) {
+    done(err, user);
   });
 });
 
 app.use(require('express-session')({
-  secret: 'keyboard cat',
+  secret: 'super secret session key',
   resave: false,
   saveUninitialized: true
 }));

@@ -128,7 +128,6 @@ app.get('/signup', function(req, res) {
 
 app.get('/chat', function(req, res) {
   if (req.user) {
-    console.log(req.user);
     res.sendFile(__dirname + '/chat.html');
   } else {
     res.redirect('/');

@@ -143,6 +143,11 @@ app.get('/userinfo', function(req, res) {
   }
 });
 
+app.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
 app.post('/', urlParser, passport.authenticate('local-login', {successRedirect: '/chat', failureRedirect: '/'}));
 
 app.post('/signup', urlParser, passport.authenticate('local-signup', {successRedirect: '/chat', failureRedirect: '/signup'}));

@@ -1,5 +1,13 @@
 var socket = io();
 
+var userInfoRequest = new XMLHttpRequest();
+userInfoRequest.onload = function() {
+  var userInfo = JSON.parse(userInfoRequest.responseText);
+  document.getElementById('username').textContent = userInfo.username;
+}
+userInfoRequest.open('GET', '/userinfo');
+userInfoRequest.send();
+
 var currentRoom = 'main';
 socket.emit('join room', currentRoom);
 

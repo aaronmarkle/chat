@@ -27,7 +27,7 @@ var User = mongoose.model('User', userSchema);
 // Passport login configuration
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-passport.use(new LocalStrategy(function(username, password, done) {
+passport.use('local-login', new LocalStrategy(function(username, password, done) {
   User.findOne({username: username}, function(err, user){
     if (err) {
       return done(err);
@@ -128,14 +128,22 @@ app.get('/signup', function(req, res) {
 
 app.get('/chat', function(req, res) {
   if (req.user) {
+    console.log(req.user);
     res.sendFile(__dirname + '/chat.html');
   } else {
-    console.log(req.user);
     res.redirect('/');
   }
 });
 
-app.post('/', urlParser, passport.authenticate('local', {successRedirect: '/chat', failureRedirect: '/'}));
+app.get('/userinfo', function(req, res) {
+  if (req.user) {
+    res.json(req.user);
+  } else {
+    res.end();
+  }
+});
+
+app.post('/', urlParser, passport.authenticate('local-login', {successRedirect: '/chat', failureRedirect: '/'}));
 
 app.post('/signup', urlParser, passport.authenticate('local-signup', {successRedirect: '/chat', failureRedirect: '/signup'}));
 

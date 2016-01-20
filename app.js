@@ -85,19 +85,29 @@ app.use(theInitializer);
 app.use(passport.session());
 
 // Socket configuration
+var usernames = {};
+var rooms = ['main', 'dev', 'sports', 'games'];
+
 io.on('connection', function(socket){
-  socket.on('adduser', function(username){
+  socket.on('adduser', function(username) {
     socket.username = username;
   });
 
   socket.on('join room', function(room) {
-    console.log('joining room', room);
+    socket.room = room;
     socket.join(room);
+    io.sockets.in(room).emit('updateRoom', socket.username);
   });
-  
-  socket.on('leave room', function(room) {
-    console.log('leaving room', room);
-    socket.leave(room);
+
+  socket.on('switchRoom', function(newroom) {
+    if (newroom !== socket.room) {
+      socket.leave(socket.room);
+      socket.room = newroom;
+      socket.join(newroom);
+      console.log(io.sockets.adapter.rooms[newroom])
+      io.sockets.in(newroom).emit('updateRoom', socket.username);
+    }
+    //console.log(io.sockets.sockets[socket.id].username);
   });
 
   socket.on('send', function(data) {

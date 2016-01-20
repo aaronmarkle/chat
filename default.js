@@ -1,16 +1,15 @@
 var socket = io();
+var currentRoom = 'main';
 
 var userInfoRequest = new XMLHttpRequest();
 userInfoRequest.onload = function() {
   var userInfo = JSON.parse(userInfoRequest.responseText);
   document.getElementById('username').textContent = userInfo.username;
   socket.emit('adduser', userInfo.username);
+  socket.emit('join room', currentRoom);
 }
 userInfoRequest.open('GET', '/userinfo');
 userInfoRequest.send();
-
-var currentRoom = 'main';
-socket.emit('join room', currentRoom);
 
 function chatroomLinks(btnId, roomName) {
   document.getElementById(btnId).addEventListener('click', function(){

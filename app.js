@@ -85,9 +85,6 @@ app.use(theInitializer);
 app.use(passport.session());
 
 // Socket configuration
-var usernames = {};
-var rooms = ['main', 'dev', 'sports', 'games'];
-
 io.on('connection', function(socket){
   socket.on('adduser', function(username) {
     socket.username = username;
@@ -104,8 +101,11 @@ io.on('connection', function(socket){
       socket.leave(socket.room);
       socket.room = newroom;
       socket.join(newroom);
-      console.log(io.sockets.adapter.rooms[newroom])
-      io.sockets.in(newroom).emit('updateRoom', socket.username);
+      var roomList = Object.keys(io.sockets.adapter.rooms[newroom].sockets);
+      for (var i=0; i<roomList.length; i++) {
+        console.log(io.sockets.connected[roomList[i]].username);
+      }
+      io.sockets.in(newroom).emit('updateRoom', socket.username/*, roomList*/);
     }
     //console.log(io.sockets.sockets[socket.id].username);
   });

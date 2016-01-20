@@ -6,7 +6,7 @@ userInfoRequest.onload = function() {
   var userInfo = JSON.parse(userInfoRequest.responseText);
   document.getElementById('username').textContent = userInfo.username;
   socket.emit('adduser', userInfo.username);
-  socket.emit('join room', currentRoom);
+  //socket.emit('join room', currentRoom);
 }
 userInfoRequest.open('GET', '/userinfo');
 userInfoRequest.send();
@@ -37,9 +37,18 @@ socket.on('message', function(username, msg) {
   document.getElementById('messages').appendChild(li);
 });
 
-socket.on('updateRoom', function(username) {
+socket.on('updateRoom', function(username, userList) {
   var node = document.createTextNode(username + ' has joined the ' + currentRoom + ' chat');
   var li = document.createElement('li');
   li.appendChild(node);
   document.getElementById('messages').appendChild(li);
+  while (document.getElementById('users-list').firstChild) {
+    document.getElementById('users-list').removeChild(document.getElementById('users-list').firstChild);
+  }
+  for (i=0; i<userList.length; i++) {
+    var node = document.createTextNode(userList[i]);
+    var li = document.createElement('li');
+    li.appendChild(node);
+    document.getElementById('users-list').appendChild(li);
+  }
 });

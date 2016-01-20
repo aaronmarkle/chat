@@ -102,12 +102,12 @@ io.on('connection', function(socket){
       socket.room = newroom;
       socket.join(newroom);
       var roomList = Object.keys(io.sockets.adapter.rooms[newroom].sockets);
+      var userList = [];
       for (var i=0; i<roomList.length; i++) {
-        console.log(io.sockets.connected[roomList[i]].username);
+        userList.push(io.sockets.connected[roomList[i]].username);
       }
-      io.sockets.in(newroom).emit('updateRoom', socket.username/*, roomList*/);
+      io.sockets.in(newroom).emit('updateRoom', socket.username, userList);
     }
-    //console.log(io.sockets.sockets[socket.id].username);
   });
 
   socket.on('send', function(data) {

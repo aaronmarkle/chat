@@ -13,7 +13,9 @@ userInfoRequest.send();
 
 function chatroomLinks(btnId, roomName) {
   document.getElementById(btnId).addEventListener('click', function(){
-    socket.emit('leaveRoom', currentRoom);
+    if (roomName !== currentRoom) {
+      socket.emit('leaveRoom', currentRoom);
+    }
     socket.emit('switchRoom', roomName);
     currentRoom = roomName;
     document.getElementById('title').textContent = roomName + ' chat';

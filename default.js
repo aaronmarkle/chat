@@ -13,6 +13,7 @@ userInfoRequest.send();
 
 function chatroomLinks(btnId, roomName) {
   document.getElementById(btnId).addEventListener('click', function(){
+    socket.emit('leaveRoom', currentRoom);
     socket.emit('switchRoom', roomName);
     currentRoom = roomName;
     document.getElementById('title').textContent = roomName + ' chat';
@@ -52,3 +53,19 @@ socket.on('updateRoom', function(username, userList) {
     document.getElementById('users-list').appendChild(li);
   }
 });
+
+socket.on('updateList', function(username, userList) {
+  var node = document.createTextNode(username + ' has left the ' + currentRoom + ' chat');
+  var li = document.createElement('li');
+  li.appendChild(node);
+  document.getElementById('messages').appendChild(li);
+  while (document.getElementById('users-list').firstChild) {
+    document.getElementById('users-list').removeChild(document.getElementById('users-list').firstChild);
+  }
+  for (i=0; i<userList.length; i++) {
+    var node = document.createTextNode(userList[i]);
+    var li = document.createElement('li');
+    li.appendChild(node);
+    document.getElementById('users-list').appendChild(li);
+  }
+})

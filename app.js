@@ -96,9 +96,20 @@ io.on('connection', function(socket){
     io.sockets.in(room).emit('updateRoom', socket.username);
   });
 
+  socket.on('leaveRoom', function(room) {
+    socket.leave(socket.room);
+    if (io.sockets.adapter.rooms[room]) {
+      var roomList = Object.keys(io.sockets.adapter.rooms[room].sockets);
+      var userList = [];
+      for (var i=0; i<roomList.length; i++) {
+        userList.push(io.sockets.connected[roomList[i]].username);
+      }
+      io.sockets.in(room).emit('updateList', socket.username, userList);
+    }
+  });
+
   socket.on('switchRoom', function(newroom) {
     if (newroom !== socket.room) {
-      socket.leave(socket.room);
       socket.room = newroom;
       socket.join(newroom);
       var roomList = Object.keys(io.sockets.adapter.rooms[newroom].sockets);

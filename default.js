@@ -6,7 +6,7 @@ userInfoRequest.onload = function() {
   var userInfo = JSON.parse(userInfoRequest.responseText);
   document.getElementById('username').textContent = userInfo.username;
   socket.emit('adduser', userInfo.username);
-  //socket.emit('join room', currentRoom);
+  socket.emit('join room', currentRoom);
 }
 userInfoRequest.open('GET', '/userinfo');
 userInfoRequest.send();

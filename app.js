@@ -93,7 +93,12 @@ io.on('connection', function(socket){
   socket.on('join room', function(room) {
     socket.room = room;
     socket.join(room);
-    io.sockets.in(room).emit('updateRoom', socket.username);
+    var roomList = Object.keys(io.sockets.adapter.rooms[room].sockets);
+    var userList = [];
+    for (var i=0; i<roomList.length; i++) {
+      userList.push(io.sockets.connected[roomList[i]].username);
+    }
+    io.sockets.in(room).emit('updateRoom', socket.username, userList);
   });
 
   socket.on('leaveRoom', function(room) {

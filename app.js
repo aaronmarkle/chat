@@ -98,7 +98,7 @@ io.on('connection', function(socket){
     for (var i=0; i<roomList.length; i++) {
       userList.push(io.sockets.connected[roomList[i]].username);
     }
-    Chat.find({'room': socket.room}).exec(function(err, msgs) {
+    Chat.find({'room': socket.room}).sort({'created': -1}).limit(20).exec(function(err, msgs) {
       chatHistory = msgs;
       socket.emit('loadHistory', chatHistory);
     });
@@ -126,7 +126,7 @@ io.on('connection', function(socket){
       for (var i=0; i<roomList.length; i++) {
         userList.push(io.sockets.connected[roomList[i]].username);
       }
-      Chat.find({'room': socket.room}).exec(function(err, msgs) {
+      Chat.find({'room': socket.room}).sort({'created': -1}).limit(20).exec(function(err, msgs) {
         chatHistory = msgs;
         socket.emit('loadHistory', chatHistory);
       });

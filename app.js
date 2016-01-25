@@ -9,20 +9,27 @@ var urlParser = bodyParser.urlencoded({ extended: false });
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/users');
 var Schema = mongoose.Schema;
+
 var userSchema = new Schema({
   username: String,
   password: String
 });
+var User = mongoose.model('User', userSchema);
 
-function createUser() {
+var chatSchema = new Schema({
+  content: String,
+  username: String,
+  room: String
+});
+var Chat = mongoose.model('Chat', chatSchema);
+
+/*function createUser() {
   var newUser = new User({
     username: username,
     password: password
   });
   newUser.save();
-}
-
-var User = mongoose.model('User', userSchema);
+}*/
 
 // Passport login configuration
 var passport = require('passport');

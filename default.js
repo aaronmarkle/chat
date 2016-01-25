@@ -40,6 +40,18 @@ socket.on('message', function(username, msg) {
   document.getElementById('messages').appendChild(li);
 });
 
+socket.on('loadHistory', function(chatHistory) {
+  while (document.getElementById('messages').firstChild) {
+    document.getElementById('messages').removeChild(document.getElementById('messages').firstChild);
+  }
+  for (var i=0; i<chatHistory.length; i++) {
+    var node = document.createTextNode(chatHistory[i].username + ': ' + chatHistory[i].content);
+    var li = document.createElement('li');
+    li.appendChild(node);
+    document.getElementById('messages').appendChild(li);
+  }
+});
+
 socket.on('updateRoom', function(username, userList) {
   var node = document.createTextNode(username + ' has joined the ' + currentRoom + ' chat');
   var li = document.createElement('li');

@@ -17,19 +17,12 @@ var userSchema = new Schema({
 var User = mongoose.model('User', userSchema);
 
 var chatSchema = new Schema({
+  created: Date,
   content: String,
   username: String,
   room: String
 });
 var Chat = mongoose.model('Chat', chatSchema);
-
-/*function createUser() {
-  var newUser = new User({
-    username: username,
-    password: password
-  });
-  newUser.save();
-}*/
 
 // Passport login configuration
 var passport = require('passport');
@@ -105,6 +98,10 @@ io.on('connection', function(socket){
     for (var i=0; i<roomList.length; i++) {
       userList.push(io.sockets.connected[roomList[i]].username);
     }
+    Chat.find({'room': socket.room}).exec(function(err, msgs) {
+      chatHistory = msgs;
+      socket.emit('loadHistory', chatHistory);
+    });
     io.sockets.in(room).emit('updateRoom', socket.username, userList);
   });
 
@@ -129,12 +126,25 @@ io.on('connection', function(socket){
       for (var i=0; i<roomList.length; i++) {
         userList.push(io.sockets.connected[roomList[i]].username);
       }
+      Chat.find({'room': socket.room}).exec(function(err, msgs) {
+        chatHistory = msgs;
+        socket.emit('loadHistory', chatHistory);
+      });
       io.sockets.in(newroom).emit('updateRoom', socket.username, userList);
     }
   });
 
   socket.on('send', function(data) {
     io.sockets.in(data.room).emit('message', socket.username, data.message);
+    var newChat = new Chat({
+      created: new Date(),
+      content: data.message,
+      username: socket.username,
+      room: data.room
+    });
+    newChat.save(function(err) {
+      if (err) throw err;
+    });
   });
 });
 

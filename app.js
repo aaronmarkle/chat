@@ -149,12 +149,17 @@ io.on('connection', function(socket){
 });
 
 // Routes
+// Static Files
 app.get('/default.css', function(req, res) {
   res.sendFile(__dirname + '/default.css');
 });
 
 app.get('/default.js', function(req, res) {
   res.sendFile(__dirname + '/default.js');
+});
+
+app.get('/login.css', function(req, res) {
+  res.sendFile(__dirname + '/login.css');
 });
 
 app.get('/', function(req, res) {

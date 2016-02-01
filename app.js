@@ -199,6 +199,6 @@ app.post('/', urlParser, passport.authenticate('local-login', {successRedirect: 
 
 app.post('/signup', urlParser, passport.authenticate('local-signup', {successRedirect: '/chat', failureRedirect: '/signup'}));
 
-http.listen(8080, function(){
+http.listen(process.env.PORT || 8080, function(){
   console.log('server live on port 8080');
 });

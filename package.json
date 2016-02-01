@@ -1,0 +1,33 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "A place to chat with others about specific topics.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaronmarkle/chat.git"
+  },
+  "author": "Aaron Markle",
+  "dependencies": {
+    "express": "*",
+    "body-parser": "*",
+    "mongoose": "*",
+    "http": "*",
+    "socket.io": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "express-session": "*"
+  },
+  "engines": {
+    "node": "4.2.2"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aaronmarkle/chat/issues"
+  },
+  "homepage": "https://github.com/aaronmarkle/chat#readme"
+}

@@ -7,7 +7,7 @@ var urlParser = bodyParser.urlencoded({ extended: false });
 
 // Mongoose configuration
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/users');
+mongoose.connect('mongodb://aaronmarkle:secretchat@ds055545.mongolab.com:55545/letschatapp');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({

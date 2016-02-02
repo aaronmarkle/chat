@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="default.css">
 </head>
 <body>
-  <p class="h1 text-center">come chat app</p>
+  <p id="page-title" class="h1 text-center">come chat app</p>
   <ul id="rooms" class="text-center">
     <li><button id="main-link" class="btn btn-primary btn-lg">Main Chatroom</button></li>
     <li><button id="dev-link" class="btn btn-primary btn-lg">Web Development</button></li>
@@ -15,7 +15,6 @@
     <a href="/logout"><button id="logout" class="btn btn-danger btn-lg">Logout</button></a>
   </ul>
   <div id="main">
-    <div class="row">
     <div class="col-xs-10 col-xs-offset-1 col-sm-7 col-sm-offset-1">
       <div id="bar">
         <div id="red"></div>
@@ -42,7 +41,6 @@
           <p id="title-users" class="h4">users list</p>
           <ul id="users-list"></ul>
       </div>
-    </div>
     </div>
   </div>
   <script src="/socket.io/socket.io.js"></script>

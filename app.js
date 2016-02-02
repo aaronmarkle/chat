@@ -162,6 +162,10 @@ app.get('/login.css', function(req, res) {
   res.sendFile(__dirname + '/login.css');
 });
 
+app.get('/chat-bg.jpg', function(req, res) {
+  res.sendFile(__dirname + '/chat-bg.jpg');
+});
+
 app.get('/', function(req, res) {
   if (req.user) {
     res.redirect('/chat');

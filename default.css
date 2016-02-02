@@ -10,6 +10,10 @@ body {
   margin: 0;
 }
 
+#form {
+  margin-top: 15px;
+}
+
 #rooms {
   list-style-type: none;
   padding: 0;
@@ -20,69 +24,128 @@ body {
   margin: 0 10px;
 }
 
-#users-view {
-  border: solid 2px #111;
-  border-radius: 5px;
-  margin-left: 10px;
-}
-
 #users-list {
   padding: 0;
   margin: 0;
   list-style-type: none;
 }
 
+#title {
+  margin-top: 0;
+  padding-top: 10px;
+}
+
+#title-users {
+  margin-top: 0;
+  padding-top: 10px;
+}
+
 #bar {
-    text-align: center;
-    height: 25px;
-    background-color: #DAD9D9;
-    margin-top: 10px;
-    min-width: 500px;
-    font-family: monospace;
-    float: none;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
+  text-align: center;
+  height: 25px;
+  background-color: #DAD9D9;
+  margin-top: 10px;
+  min-width: 350px;
+  font-family: monospace;
+  float: none;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+#bar-userlist {
+  text-align: center;
+  height: 25px;
+  background-color: #DAD9D9;
+  margin-top: 10px;
+  font-family: monospace;
+  float: none;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 }
 
 #red {
-    background-color: #E94B35;
-    border-radius: 100%;
-    width: 15px;
-    height: 15px;
-    margin: 0 auto;
-    left: -49%;
-    bottom: -20%;
-    position:relative;
+  background-color: #E94B35;
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+  margin: 0 auto;
+  left: -47%;
+  bottom: -20%;
+  position:relative;
 }
 
 #yellow {
-    background-color: #f0f000;
-    border-radius: 100%;
-    width: 15px;
-    height: 15px;
-    margin: 0 auto;
-    left: -45%;
-    bottom: 40%;
-    position:relative;
-    display: block;
+  background-color: #f0f000;
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+  margin: 0 auto;
+  left: -42%;
+  bottom: 40%;
+  position:relative;
+  display: block;
 }
 
 #green {
-    background-color: #1AAF5C;
-    border-radius: 100%;
-    width: 15px;
-    height: 15px;
-    margin: 0 auto;
-    left: -41%;
-    bottom: 99%;
-    position:relative;
-    display: block;
+  background-color: #1AAF5C;
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+  margin: 0 auto;
+  left: -37%;
+  bottom: 99%;
+  position:relative;
+  display: block;
+}
+
+#red-userlist {
+  background-color: #E94B35;
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+  margin: 0 auto;
+  left: -44%;
+  bottom: -20%;
+  position:relative;
+}
+
+#yellow-userlist {
+  background-color: #f0f000;
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+  margin: 0 auto;
+  left: -34%;
+  bottom: 40%;
+  position:relative;
+  display: block;
+}
+
+#green-userlist {
+  background-color: #1AAF5C;
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+  margin: 0 auto;
+  left: -23%;
+  bottom: 99%;
+  position:relative;
+  display: block;
 }
 
 #screen {
-    background-color: #fcfcfc;
-    min-width: 500px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    margin-bottom: 50px;
+  background-color: #fcfcfc;
+  min-width: 350px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-bottom: 50px;
+  padding: 0 15px 15px 15px;
+}
+
+#screen-userlist {
+  background-color: #fcfcfc;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-bottom: 50px;
+  padding: 0 15px 15px 15px;
 }

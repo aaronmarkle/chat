@@ -12,9 +12,8 @@ body {
     min-width: 500px;
     font-family: monospace;
     float: none;
-    border-radius: 5px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
 }
 #red {
     background-color: #E94B35;
@@ -52,13 +51,16 @@ body {
     background-color: #fcfcfc;
     height: 350px;
     min-width: 500px;
-    border-radius: 2%;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     margin-bottom: 50px;
 }
 
 #login {
+  margin-top: 10px;
+}
+
+#register {
   margin-top: 10px;
 }
 

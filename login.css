@@ -6,12 +6,11 @@ body {
 
 #bar {
     text-align: center;
-    width: 750px;
     height: 25px;
     background-color: #DAD9D9;
-    margin: 100px auto 0 auto;
+    margin-top: 150px;
+    min-width: 500px;
     font-family: monospace;
-    padding: auto;
     float: none;
     border-radius: 5px;
     border-bottom-left-radius: 0;
@@ -23,7 +22,7 @@ body {
     width: 15px;
     height: 15px;
     margin: 0 auto;
-    left: -47%;
+    left: -49%;
     bottom: -20%;
     position:relative;
 }
@@ -33,7 +32,7 @@ body {
     width: 15px;
     height: 15px;
     margin: 0 auto;
-    left: -44%;
+    left: -45%;
     bottom: 40%;
     position:relative;
     display: block;
@@ -50,16 +49,19 @@ body {
     display: block;
 }
 #screen {
-    background-color: #eee;
-    width: 750px;
-    height: 450px;
+    background-color: #fcfcfc;
+    height: 350px;
+    min-width: 500px;
     border-radius: 2%;
-    margin: 0 auto;
-    padding: 1px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
 
 #login {
   margin-top: 10px;
+}
+
+#title-login {
+  margin-top: 0;
+  padding-top: 25px;
 }
